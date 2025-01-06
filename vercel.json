@@ -1,19 +1,19 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": ".output/public/**",
-            "use": "@vercel/static"
-        },
-        {
-            "src": ".output/server/index.mjs",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": ".output/server/index.mjs"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": ".vercel/output/public/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": ".vercel/output/server/index.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": ".vercel/output/server/index.mjs"
+    }
+  ]
 }
