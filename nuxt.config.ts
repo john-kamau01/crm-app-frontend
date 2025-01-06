@@ -12,7 +12,10 @@ export default defineNuxtConfig({
     baseURL: "/",
   },
   nitro: {
-    preset: "vercel",  // Important for Vercel deployment
+    preset: "vercel",
+    output: {
+      dir: "../../.vercel/output",
+    },
   },
   runtimeConfig: {
     public: { apiBase: "https://crm-app-api.vercel.app/api" },
