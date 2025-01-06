@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: "vercel",
     output: {
-      dir: "../../.vercel/output",
+      dir: ".vercel/output",
     },
   },
   runtimeConfig: {
