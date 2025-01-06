@@ -2,18 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": ".vercel/output/static/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": ".vercel/output/server/index.mjs",
+      "src": "nuxt.config.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": ".vercel/output/server/index.mjs"
+      "dest": "/nuxt.config.ts"
     }
   ]
 }
