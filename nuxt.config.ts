@@ -8,6 +8,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vuetify"],
   },
+  app: {
+    baseURL: "/",
+  },
+  nitro: {
+    preset: "vercel",  // Important for Vercel deployment
+  },
   runtimeConfig: {
     public: { apiBase: "https://crm-app-api.vercel.app/api" },
   },
