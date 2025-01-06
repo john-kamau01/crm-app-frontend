@@ -2,12 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": ".output/static/**",
-      "use": "@vercel/static"
-    },
-    {
       "src": ".output/server/index.mjs",
       "use": "@vercel/node"
+    },
+    {
+      "src": "static/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
