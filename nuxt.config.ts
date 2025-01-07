@@ -6,14 +6,12 @@ export default defineNuxtConfig({
   css: ["vuetify/styles"],
   plugins: ["~/plugins/vuetify.js"],
   ssr: false,
+  target: "static",
   build: {
     transpile: ["vuetify"],
   },
   app: {
     baseURL: "/",
-  },
-  nitro: {
-    preset: "vercel",
   },
   runtimeConfig: {
     public: { apiBase: "https://crm-app-api.vercel.app/api" },
