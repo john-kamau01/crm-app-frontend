@@ -56,6 +56,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-snackbar v-model="snackbar.show" :timeout="snackbar.timeout" :color="snackbar.color">
+      {{ snackbar.message }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -64,6 +68,7 @@ import { ref } from "vue";
 const config = useRuntimeConfig();
 const leads = ref([]);
 const dialog = ref(false);
+const snackbar = ref({ show: false, message: "", color: "", timeout: 3000 });
 
 const newLead = ref({
   name: "",
@@ -85,26 +90,37 @@ const createLead = async () => {
   if (response.status == 200) {
     newLead.value = { name: "", email: "", phone: "" };
     dialog.value = false;
+    showSnackbar("Lead created successfully", "success")
     fetchLeads();
   } else {
     console.error("Error creating lead", response);
+    showSnackbar("Error creating lead", "error");
   }
 };
 
 const deleteLead = async (id) => {
   try {
-    const response = await useFetch(`${config.public.apiBase}/lead/${id}`, {
+    const response = await useFetch(`${config.public.apiBase}/leads/${id}`, {
       method: "DELETE",
     });
 
     if (response.status == 200) {
       leads.value = leads.value.filter((lead) => lead._id !== id);
+      showSnackbar("Lead deleted successfully", "success");
     } else {
       console.error("Failed to delete lead", response);
+      showSnackbar("Failed to delete lead", "error");
     }
   } catch (error) {
     console.error("Error deleting lead", error);
+    showSnackbar("Error deleting lead", "error");
   }
+};
+
+const showSnackbar = (message, color) => {
+  snackbar.value.message = message;
+  snackbar.value.color = color;
+  snackbar.value.show = true;
 };
 
 fetchLeads();
